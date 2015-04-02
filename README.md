@@ -9,6 +9,7 @@ Collection of script for osx
  Updates are showed with command line echo's and using the osx notification system
 ######Usage 
 `./check_ups.sh tracking_number`
+
 ex. `./check_ups.sh 1Z32972V6857000000`
 
 ######Used in the script\:
