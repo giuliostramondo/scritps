@@ -33,11 +33,11 @@ xmllint --html --xpath "//table[1]/tr[position()>1]" http://wwwapps.ups.com/WebT
 item_number=0
 
 echo "starting to monitor tracking page"
-trap "rm tmp.out; exit 0" SIGHUP SIGINT SIGTERM
+trap "rm tmp.out; echo 'bye'; exit 0" SIGHUP SIGINT SIGTERM
 
 while [ true ]
 do
-	xmllint --html --xpath "//table[1]/tr[position()>1]" http://wwwapps.ups.com/WebTracking/processRequest\?loc\=it_IT\&tracknum\=$tracking_number 2>/dev/null | tidy --indent yes -xml -q > tmp.out 
+	xmllint --html --xpath "//table[1]/tr[position()>1]" http://wwwapps.ups.com/WebTracking/processRequest\?tracknum\=$tracking_number 2>/dev/null | tidy --indent yes -xml -q > tmp.out 
 	item_number_tmp=`xmllint --html --xpath "count(//tr)" tmp.out`
 	if [ "$item_number_tmp" -gt "$item_number" ] 
 		then
